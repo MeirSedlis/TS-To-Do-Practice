@@ -1,0 +1,19 @@
+CREATE TABLE "project" (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR (255) NOT NULL,
+	inserted_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+	updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+	owner VARCHAR (80) NOT NULL
+	);
+	
+CREATE TABLE "todo" (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR (255) NOT NULL,
+	priority INT DEFAULT 3,
+	notes TEXT, 
+	is_complete BOOLEAN DEFAULT FALSE,
+	inserted_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+	updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+	due TIMESTAMPTZ,
+	project_id INT REFERENCES "project" NOT NULL
+);
